@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class c30 {
     public static void main(String[] args){
         double pounds = 100d;
-        double poundsToKilograms = 0.45359237;
+        double poundsToKilograms = 0.45359237d;
         double kilograms = pounds * poundsToKilograms;
 
         System.out.println("The kilograms in " + pounds + " pounds are " + kilograms + ".");
