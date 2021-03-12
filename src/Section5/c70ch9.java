@@ -2,57 +2,74 @@ package Section5;
 
 public class c70ch9 {
     public static void main(String[] args) {
-        System.out.println(reverse(210));
+        numberToWords(1150);
     }
 
-//    public static String numberToWords(int number){
-//
-//    }
+    public static void numberToWords(int number){
+        if (number < 0) {
+            System.out.println("Invalid Value");
+        }
+
+        String digitsToWords = "";
+
+        int reversedNumber = reverse(number);
+        for (int i=0;i<getDigitCount(number);i++){
+
+            switch (reversedNumber % 10) {
+                case 0:
+                    digitsToWords += "Zero ";
+                    break;
+                case 1:
+                    digitsToWords += "One ";
+                    break;
+                case 2:
+                    digitsToWords += "Two ";
+                    break;
+                case 3:
+                    digitsToWords += "Three ";
+                    break;
+                case 4:
+                    digitsToWords += "Four ";
+                    break;
+                case 5:
+                    digitsToWords += "Five ";
+                    break;
+                case 6:
+                    digitsToWords += "Six ";
+                    break;
+                case 7:
+                    digitsToWords += "Seven ";
+                    break;
+                case 8:
+                    digitsToWords += "Eight ";
+                    break;
+                case 9:
+                    digitsToWords += "Nine ";
+                    break;
+            }
+            reversedNumber /= 10;
+        }
+        System.out.println(digitsToWords);
+    }
 
     public static int reverse(int number) {
-        int reverse = 0;
-        int reverseCount = 0;
-        String str = "";
-        int originalNumber = number;
+        int reverseNumber = 0;
 
-        if (number < 0) {
-            number *= -1;
-        }
-
-        while (number > 0) {
-            int lastDigit = number % 10;
-
-            reverse *= 10;
-            reverse += lastDigit;
-
+        while (number != 0) {
+            reverseNumber = (reverseNumber * 10) + (number % 10);
             number /= 10;
         }
-        int reversePlaceholder = reverse;
-        while (reversePlaceholder > 0) {
-            reverseCount++;
-            reversePlaceholder /= 10;
-        }
-        if (reverseCount != getDigitCount(originalNumber)) {
-            int zerosNeeded = getDigitCount(originalNumber) - reverseCount;
-            System.out.println(reverse);
-            str = String.format("%02d", reverse);
-            System.out.println(str);
-        }
-        reverse = Integer.parseInt(str);
-        return reverse;
+        return reverseNumber;
     }
 
     public static int getDigitCount(int number) {
         if (number < 0) {
             return -1;
         }
-        int count = 0;
-        if (number == 0){
-            number = 1;
-        }
-        while (number > 0) {
-            count++;
+        int count = 1;
+        while(number > 9) {
             number /= 10;
+            count++;
         }
         return count;
     }
